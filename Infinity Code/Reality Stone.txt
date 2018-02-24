@@ -1,0 +1,30 @@
+/*Thanos, with the aid of the reality stone, decides to create an alternate reality where people are allowed to communicate only through coding in Brainfuck programming language. Thanos wants to teach people to say "Thanos rules". As Thanos' associate, it is your responsibility to carry out this task.
+
+Input Format
+
+-
+
+Constraints
+
+-
+
+Output Format
+
+Display Thanos rules
+
+Sample Output 0
+
+Thanos rules
+
+Contest ends in 6 hours
+
+Submissions: 0
+
+Max Score:
+
+100
+
+Rate This Challenge:
+More
+*/
+++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>++++++++++++++.>++++.-------.+++++++++++++.+.++++.<<++.>>-.+++.---------.-------.++++++++++++++.
