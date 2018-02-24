@@ -62,6 +62,7 @@ int main() {
                 else
                     two++;
                 
+                
             }
             
             if(one==two)

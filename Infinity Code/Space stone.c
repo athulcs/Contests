@@ -66,30 +66,33 @@ In the 3rd second the third task will come. By this time, computers with the ids
 int main() {
 
     /* Enter your code here. Read input from STDIN. Print output to STDOUT */    
-    int n,q,i,j,free=0,ass=0,sum;
+    int n,q,i,j,free=0,ass=0,sum=0;
     scanf("%d %d",&n,&q);
     int ti[q],ki[q],di[q],com[n];
     for(i=0;i<n;i++)
         com[i]=0;
     for(i=0;i<q;i++){
         scanf("%d %d %d",&ti[i],&ki[i],&di[i]);
-        for(j=1;i<=n;i++)
+        for(j=0;j<n;j++)
             if(com[j]<ti[i])
                 free++;
         if(free>=ki[i]){
-            while(ass!=ki[i]){
-            for(j=1;j<=n;j++){
-                if(com[j]<ti[i]){
-                    com[j]=di[i];
-                    sum+=j;
+            
+            for(j=0;j<n;j++){
+                if(com[j]<ti[i]&&ass<ki[i]){
+                    com[j]=di[i]+ti[i]-1;
+                    sum+=j+1;
                     ass++;
                 }
-              }
+              
             }
+            printf("%d\n",sum);
         }
-        printf("%d\n",sum);
+        else
+            printf("-1\n");
         sum=0;
         ass=0;
+        free=0;
     }
     
     return 0;
