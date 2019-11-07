@@ -1,4 +1,6 @@
-/* Read input from STDIN. Print your output to STDOUT*/
+/**
+ * 
+ */
 
 import java.awt.geom.Line2D;
 import java.io.*;
@@ -12,41 +14,65 @@ public class CandidateCode {
     static int p,w;
     static int maxx = 0;
     static int maxy = 0;
+    static int count=0;
     static int minx =1000000;
     static int miny =1000000;
+    static double xc,yc;
+    
+    public static void destroyWindows(){}
+    
+    public static void checkFireComplete(){}
+    
+    public static void windowCount(){}
     
     public static void initializeFire(int x,int y){
         if(x>maxx||y>maxy)
             return;
-        if(y<miny||x<minx)
+        if(x<0||y<0)
             return;
         if(fireArray[x][y]==0){
+            if(x<8&&y<8&&x>0&&y>0)
+               System.out.println("Error:"+x+","+y);
+            else
+                System.out.println("Correct:"+x+","+y);
+            if(x==1&&y==1)
+                return;
             fireArray[x][y]=1;
-            if(checkWindowBetween(x,y,x+1,y))
+            xc=x+0.5;
+            yc=y+0.5;
+            if(!checkWindowBetween(xc,yc,xc+1,yc))
                 initializeFire(x+1,y);
-            if(checkWindowBetween(x,y,x-1,y))    
+            if(!checkWindowBetween(xc,yc,xc-1,yc))    
                 initializeFire(x-1,y);
-            if(checkWindowBetween(x,y,x,y+1))    
+            if(!checkWindowBetween(xc,yc,xc,yc+1))    
                 initializeFire(x,y+1);
-            if(checkWindowBetween(x,y,x,y-1))    
+            if(!checkWindowBetween(xc,yc,xc,yc-1))    
                 initializeFire(x,y-1);
         }
     }
     
-    public static boolean checkWindowBetween(int m,int n,int p1,int p2){
+    public static boolean checkWindowBetween(double m,double n,double p1,double p2){
+        if(p1<0)
+            return false;
+        if(p1>maxx)    
+            return false;
+        if(p2<0)
+            return false;
+        if(p2>maxy)
+            return false;
         for(int i=0;i<w;i++){
-            if(Line2D.linesIntersect(m,n,p1,p2,points[windows[i][0]][0],points[windows[i][0]][1],points[windows[i][1]][0],points[windows[i][1]][1]))
+            if(Line2D.linesIntersect(m,n,p1,p2,points[windows[i][0]-1][0],points[windows[i][0]-1][1],points[windows[i][1]-1][0],points[windows[i][1]-1][1]))
                 return true;
         }
-        
         return false;
     }
     
    public static void main(String args[] ) throws Exception {
       
 
-	//Write code here
-        Scanner s = new Scanner(System.in);
+    //Write code here
+        File file = new File(input.txt);
+        Scanner s = new Scanner(file);
         p=s.nextInt();
         s.nextLine();
         s.nextLine();
@@ -65,7 +91,7 @@ public class CandidateCode {
                     
             s.nextLine();
         }
-        fireArray=new int[maxx][maxy];
+        fireArray=new int[maxx+1][maxy+1];
         w=s.nextInt();
         s.nextLine();
         s.nextLine();
@@ -76,8 +102,13 @@ public class CandidateCode {
         if(s.hasNextLine())
         s.nextLine();     
         }
-        System.out.println("OK");
-
+        initializeFire(0,maxy);
+        System.out.println("maxx="+maxx+",maxy="+maxy+"minx="+minx+"miny="+miny);
+        for(int i=0;i<maxx;i++){
+            for(int j=0;j<maxy;j++)
+                System.out.print(fireArray[i][j]+" ");
+            System.out.println();    
         }
     
+    }
 }
