@@ -1,12 +1,8 @@
-/**
- * 
- */
-
 import java.awt.geom.Line2D;
 import java.io.*;
 import java.util.*;
 
-public class CandidateCode {
+public class Tech {
     
     static int[][] points;
     static int[][] windows;
@@ -31,15 +27,13 @@ public class CandidateCode {
         if(x<0||y<0)
             return;
         if(fireArray[x][y]==0){
-            if(x<8&&y<8&&x>0&&y>0)
+           /* if(x<8&&y<8&&x>0&&y>0)
                System.out.println("Error:"+x+","+y);
             else
-                System.out.println("Correct:"+x+","+y);
-            if(x==1&&y==1)
-                return;
+                System.out.println("Correct:"+x+","+y);*/
             fireArray[x][y]=1;
-            xc=x+0.5;
-            yc=y+0.5;
+            xc=x;
+            yc=y;
             if(!checkWindowBetween(xc,yc,xc+1,yc))
                 initializeFire(x+1,y);
             if(!checkWindowBetween(xc,yc,xc-1,yc))    
@@ -52,17 +46,18 @@ public class CandidateCode {
     }
     
     public static boolean checkWindowBetween(double m,double n,double p1,double p2){
-        if(p1<0)
+        /*if(p1<0)
             return false;
         if(p1>maxx)    
             return false;
         if(p2<0)
             return false;
         if(p2>maxy)
-            return false;
+            return false;*/
         for(int i=0;i<w;i++){
-            if(Line2D.linesIntersect(m,n,p1,p2,points[windows[i][0]-1][0],points[windows[i][0]-1][1],points[windows[i][1]-1][0],points[windows[i][1]-1][1]))
+            if(Line2D.linesIntersect(m,n,p1,p2,points[windows[i][0]-1][0],points[windows[i][0]-1][1],points[windows[i][1]-1][0],points[windows[i][1]-1][1])){
                 return true;
+            }
         }
         return false;
     }
@@ -71,7 +66,7 @@ public class CandidateCode {
       
 
     //Write code here
-        File file = new File(input.txt);
+        File file = new File("input.txt");
         Scanner s = new Scanner(file);
         p=s.nextInt();
         s.nextLine();
@@ -109,6 +104,7 @@ public class CandidateCode {
                 System.out.print(fireArray[i][j]+" ");
             System.out.println();    
         }
+        s.close();
     
     }
 }
